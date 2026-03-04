@@ -35,7 +35,12 @@ Key components of the analysis pipeline include:
 
 ## Bilinear Logistic Regression (Joint Latent Model)
 
-For each participant \(i\), reaction times are represented as a matrix \(Z_i \in \mathbb{R}^{m \times p}\) (blocks \(\times\) trial positions). We apply the same preprocessing / feature transform used in the analysis pipeline, denoted \(Z_i^{(-\alpha)T}\).
+<p>
+  For each participant <span>i</span>, reaction times are represented as a matrix
+  <span>Z<sub>i</sub> ∈ ℝ<sup>m × p</sup></span>
+  (blocks × trial positions). We apply the same preprocessing / feature transform used in the analysis pipeline,
+  denoted <span>Z<sub>i</sub><sup>(−α)T</sup></span>.
+</p>
 
 The joint bilinear logistic model is:
 
