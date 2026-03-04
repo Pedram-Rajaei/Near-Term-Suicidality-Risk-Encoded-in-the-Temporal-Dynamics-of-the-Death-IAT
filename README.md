@@ -23,14 +23,39 @@ Key components of the analysis pipeline include:
 
 # Key Results
 
-• Reaction-time series exhibit **structured temporal dynamics** across task blocks  
-• Autocorrelation analysis reveals **rhythmic switching patterns** in behavioral responses  
-• PCA identifies **low-dimensional latent dynamics** governing trial-by-trial adaptation  
-• A sparse bilinear logistic model predicts suicidal ideation status with  
-**77% balanced accuracy**
+- Reaction-time series exhibit **structured temporal dynamics** across task blocks  
+- Autocorrelation analysis reveals **rhythmic switching patterns** in behavioral responses  
+- PCA identifies **low-dimensional latent dynamics** governing trial-by-trial adaptation  
+- Behavioral time-series can be compressed into **low-dimensional latent embeddings (J = 2)** for robust clinical prediction  
+- A sparse bilinear logistic model predicts suicidal ideation status with **77% balanced accuracy**
 
 ---
 
+# Technical Implementation
+
+### Bilinear Logistic Regression
+
+Rather than flattening the reaction-time matrix, the model preserves the temporal structure of the BD-IAT task by using a bilinear form.
+
+Let \(X \in \mathbb{R}^{m \times p}\) represent the reaction-time matrix for a participant, where \(m\) indexes task blocks and \(p\) indexes trial positions.
+
+The probability of suicidal ideation is modeled as:
+
+$$
+P(y=1 \mid X) = \sigma \left( w_{time}^T X w_{space} + b \right)
+$$
+
+where:
+
+- \(w_{time}\) captures **temporal weighting across trial positions**
+- \(w_{space}\) captures **structure across task blocks**
+- \(\sigma(\cdot)\) is the logistic sigmoid function
+
+This formulation allows the model to learn **separable temporal and structural patterns** while dramatically reducing the number of parameters compared to a fully flattened classifier.
+
+The resulting representation provides a **low-dimensional latent embedding of behavioral dynamics** used for classification.
+
+---
 # Example Results
 
 ## Block-Level Temporal Structure
@@ -88,17 +113,20 @@ The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, dem
 <!-- Repository Structure -->
 <h2 id="repository-structure">Repository Structure</h2>
 
-<pre><code>Code/
-├── Freud_Code_For_Block_Encoding/
+<pre><code>src/
+├── block_dynamics/
 │   └── Autocorrelation analysis and block-level modeling
 │
-├── Freud_Code_For_Temporal_Encoding/
+├── trial_dynamics/
 │   └── Trial-level PCA analysis and temporal feature extraction
 │
-├── External/
+├── external/
 │   └── COMPASS state-space toolbox dependency
 │
-Figures/
+├── supplementary/
+│   └── Supplementary Informantaions Analysis 
+│
+figures/
 │   └── Publication figures (SVG format)
 │
 docs/
