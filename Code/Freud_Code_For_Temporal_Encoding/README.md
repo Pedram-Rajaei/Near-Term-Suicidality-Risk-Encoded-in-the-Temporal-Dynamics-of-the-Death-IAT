@@ -152,15 +152,15 @@ Optional:
 
 Add the project directory to the MATLAB path:
 
-```matlab
+
 addpath(genpath('Freud_Temporal_Encoding'))
 
-2. Execute Primary Analysis
+## 2. Execute Primary Analysis
 
 Generate the main latent dynamics figures:
 
 Freud_PCA_Trial_Dynamics
-3. Regenerate State-Space Filtered Data (Optional)
+## 3. Regenerate State-Space Filtered Data (Optional)
 
 If you wish to rerun the state-space preprocessing:
 
