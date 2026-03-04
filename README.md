@@ -173,26 +173,73 @@ docs/
 
 <hr/>
 
+## Reproducibility
+
+All figures and analyses reported in the paper can be reproduced directly from the code in this repository.
+
+Running the scripts listed below will reproduce the main analyses and figures reported in the manuscript.
+
+<!-- Reproducibility -->
+<h2 id="reproducibility">Reproducibility</h2>
+
+<p>
+All analyses and figures reported in the paper can be reproduced directly from the code in this repository.
+The scripts below generate the main results presented in the manuscript.
+</p>
+
 <!-- Running the Analysis -->
 <h2 id="running-the-analysis">Running the Analysis</h2>
 
 <h3 id="add-to-path">1. Add repository to the MATLAB path</h3>
-<pre><code class="language-matlab">addpath(genpath('Near-Term-Suicidality-Risk-Encoded-in-the-Temporal-Dynamics-of-the-Death-IAT'))</code></pre>
+
+<pre><code class="language-matlab">
+addpath(genpath('Near-Term-Suicidality-Risk-Encoded-in-the-Temporal-Dynamics-of-the-Death-IAT'))
+</code></pre>
 
 <h3 id="block-level-analysis">2. Block-Level Temporal Analysis</h3>
+
 <p>Run the block-level autocorrelation analysis:</p>
-<pre><code class="language-matlab">Freud_Main_Block_Analysis</code></pre>
-<p>This script generates the analyses corresponding to <strong>Figure 2</strong>.</p>
+
+<pre><code class="language-matlab">
+Freud_Main_Block_Analysis
+</code></pre>
+
+<p>This script reproduces the block-level temporal structure analyses shown in:</p>
+
+<ul>
+<li><strong><a href="figures/Figure_2_C.svg">Figure 2C</a></strong> — Block autocorrelation dynamics</li>
+<li><strong><a href="figures/Figure_2_D.svg">Figure 2D</a></strong> — Rhythmic switching structure</li>
+</ul>
 
 <h3 id="trial-level-dynamics">3. Trial-Level Temporal Dynamics</h3>
-<p>Run the PCA-based trial dynamics analysis:</p>
-<pre><code class="language-matlab">Freud_PCA_Trial_Dynamics</code></pre>
-<p>This produces the latent dynamics visualizations corresponding to <strong>Figure 3</strong>.</p>
+
+<p>Run the PCA-based temporal dynamics analysis:</p>
+
+<pre><code class="language-matlab">
+Freud_PCA_Trial_Dynamics
+</code></pre>
+
+<p>This script reproduces:</p>
+
+<ul>
+<li><strong><a href="figures/Figure_3_C.svg">Figure 3C</a></strong> — Principal component dynamics across trials</li>
+</ul>
 
 <h3 id="classification-experiments">4. Classification Experiments</h3>
+
 <p>Run the classifier benchmarking pipeline:</p>
-<pre><code class="language-matlab">Freud_Plot_Model_Comparison</code></pre>
-<p>This generates ROC comparisons used in <strong>Figure 4</strong>.</p>
+
+<pre><code class="language-matlab">
+Freud_Plot_Model_Comparison
+</code></pre>
+
+<p>This script reproduces the classification results shown in:</p>
+
+<ul>
+<li><strong><a href="figures/Figure_4_A.svg">Figure 4A</a></strong> — ROC comparison across models</li>
+<li><strong><a href="figures/Figure_4_B.svg">Figure 4B</a></strong> — Latent behavioral embedding</li>
+<li><strong><a href="figures/Figure_S2.svg">Figure S2</a></strong> — Model benchmarking</li>
+</ul>
 
 ### Requirements
 
