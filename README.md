@@ -39,24 +39,45 @@ For each participant \(i\), reaction times are represented as a matrix \(Z_i \in
 
 The joint bilinear logistic model is:
 
-$$
-\log\left(\frac{p_i}{1-p_i}\right)
-=
-b_0
-+
-\sum_{j=1}^{J}
-v_j^{T}\, Z_i^{(-\alpha)T}\, b_j
-$$
+<p align="center">
+log(p<sub>i</sub>/(1-p<sub>i</sub>)) =
+b<sub>0</sub> + Σ<sub>j=1</sub><sup>J</sup>
+v<sub>j</sub><sup>T</sup> Z<sub>i</sub><sup>(-α)T</sup> b<sub>j</sub>
+</p>
 
-where:
+<p><strong>where:</strong></p>
 
-- \(p_i = P(y_i=1 \mid Z_i)\) is the predicted probability that participant \(i\) is **with active suicidal ideation**
-- \(b_0\) is the intercept
-- \(v_j \in \mathbb{R}^{m}\) are **block-space latent vectors** (how blocks are weighted)
-- \(b_j \in \mathbb{R}^{p}\) are **trial/temporal weight vectors** (how within-block trial positions are weighted)
-- \(J\) is the latent rank (in our main results, a low-dimensional setting such as \(J=2\) is sufficient)
+<ul>
+  <li>
+    <span>
+      p<sub>i</sub> = P(y<sub>i</sub> = 1 | Z<sub>i</sub>)
+    </span>
+    is the predicted probability that participant <span>i</span> is <strong>with active suicidal ideation</strong>
+  </li>
 
-This formulation preserves the matrix structure of reaction-time dynamics and learns **paired latent patterns** \((v_j, b_j)\) that capture how trial-level temporal structure interacts with block-level structure. Compared to flattening \(Z_i\) into a single vector, the model provides a structured, low-dimensional representation that is well-suited to clinical datasets.
+  <li>
+    <span>b<sub>0</sub></span> is the intercept
+  </li>
+
+  <li>
+    <span>v<sub>j</sub> ∈ ℝ<sup>m</sup></span> are <strong>block-space latent vectors</strong> (how blocks are weighted)
+  </li>
+
+  <li>
+    <span>b<sub>j</sub> ∈ ℝ<sup>p</sup></span> are <strong>trial/temporal weight vectors</strong> (how within-block trial positions are weighted)
+  </li>
+
+  <li>
+    <span>J</span> is the latent rank (in our main results, a low-dimensional setting such as <span>J = 2</span> is sufficient)
+  </li>
+</ul>
+
+<p>
+  This formulation preserves the matrix structure of reaction-time dynamics and learns
+  <strong>paired latent patterns</strong> (v<sub>j</sub>, b<sub>j</sub>) that capture how trial-level temporal structure
+  interacts with block-level structure. Compared to flattening Z<sub>i</sub> into a single vector, the model
+  provides a structured, low-dimensional representation that is well-suited to clinical datasets.
+</p>
 
 ---
 # Example Results
