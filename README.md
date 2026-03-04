@@ -40,7 +40,6 @@ Autocorrelation analysis reveals structured rhythmic patterns in reaction-time d
 <p align="center">
 <img src="Figures/Figure_2_C.svg" width="650">
 </p>
----
 
 ## Latent Temporal Dynamics
 
@@ -49,7 +48,7 @@ Principal component analysis reveals low-dimensional temporal structure within b
 <p align="center">
 <img src="Figures/Figure_3_C.svg" width="650">
 </p>
----
+
 
 ## Model Performance
 
@@ -58,7 +57,6 @@ Receiver operating characteristic (ROC) curves comparing multiple classification
 <p align="center">
 <img src="Figures/Figure_4_A.svg" width="650">
 </p>
----
 
 ## Latent Behavioral Embedding
 
@@ -67,7 +65,6 @@ Participants projected into the learned latent feature space derived from the bi
 <p align="center">
 <img src="Figures/Figure_4_B.svg" width="650">
 </p>
----
 
 ## Model Benchmarking (Supplementary Figure S2)
 
@@ -86,7 +83,7 @@ The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, dem
 <p align="center">
 <img src="Figures/Figure_S2.svg" width="650">
 </p>
----
+
 
 <!-- Repository Structure -->
 <h2 id="repository-structure">Repository Structure</h2>
