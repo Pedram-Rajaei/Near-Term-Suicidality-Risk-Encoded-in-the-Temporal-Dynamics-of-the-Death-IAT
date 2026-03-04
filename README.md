@@ -8,8 +8,7 @@ The repository implements a full analysis pipeline that extracts **latent tempor
 
 # Overview
 
-Traditional analyses of the Implicit Association Test (IAT) rely on aggregate metrics such as the **D-score**, which summarize reaction times across blocks.  
-
+Traditional analyses of the Implicit Association Test (IAT) rely on aggregate metrics such as the **D-score** ([Fig. 2A](Figures/Figure_2_A.svg))([Fig. 2B](Figures/Figure_2_B.svg)), which summarize reaction times across blocks.
 In contrast, this project investigates the **temporal dynamics of reaction-time behavior**, capturing how responses evolve across trials and blocks. By modeling these temporal patterns, we uncover latent behavioral structure that differentiates individuals **with active suicidal ideation from those without**.
 
 Key components of the analysis pipeline include:
