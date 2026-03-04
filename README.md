@@ -37,32 +37,36 @@ Key components of the analysis pipeline include:
 
 Autocorrelation analysis reveals structured rhythmic patterns in reaction-time dynamics across BD-IAT blocks. Participants without active suicidal ideation exhibit stronger rhythmic switching patterns across task blocks, suggesting greater sensitivity to the alternating structure of the task.
 
-![Figure2C](Figures/Figure_2_C.svg)
-
+<p align="center">
+<img src="Figures/Figure_2_C.svg" width="650">
+</p>
 ---
 
 ## Latent Temporal Dynamics
 
 Principal component analysis reveals low-dimensional temporal structure within blocks of trials. The first principal component captures systematic trial-by-trial adjustment patterns that differentiate participants with and without active suicidal ideation.
 
-![Figure3C](Figures/Figure_3_C.svg)
-
+<p align="center">
+<img src="Figures/Figure_3_C.svg" width="650">
+</p>
 ---
 
 ## Model Performance
 
 Receiver operating characteristic (ROC) curves comparing multiple classification models trained on temporal features derived from reaction-time dynamics. The bilinear logistic regression model achieves the highest performance, reaching approximately **77% balanced accuracy**.
 
-![Figure4A](Figures/Figure_4_A.svg)
-
+<p align="center">
+<img src="Figures/Figure_4_A.svg" width="650">
+</p>
 ---
 
 ## Latent Behavioral Embedding
 
 Participants projected into the learned latent feature space derived from the bilinear model. The decision boundary separates individuals with and without active suicidal ideation, illustrating how temporal dynamics encode clinically relevant behavioral signatures.
 
-![Figure4B](Figures/Figure_4_B.svg)
-
+<p align="center">
+<img src="Figures/Figure_4_B.svg" width="650">
+</p>
 ---
 
 ## Model Benchmarking (Supplementary Figure S2)
@@ -79,8 +83,9 @@ We compared the proposed **Bilinear Logistic Regression model** against several 
 
 The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, demonstrating the advantage of explicitly modeling the temporal structure of reaction-time dynamics.
 
-![FigureS2](Figures/Figure_S2.svg)
-
+<p align="center">
+<img src="Figures/Figure_S2.svg" width="650">
+</p>
 ---
 
 <!-- Repository Structure -->
