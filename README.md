@@ -83,47 +83,48 @@ The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, dem
 
 ---
 
-# Repository Structure
+<!-- Repository Structure -->
+<h2 id="repository-structure">Repository Structure</h2>
 
-
-Code/
-Freud_Code_For_Block_Encoding/
-Autocorrelation analysis and block-level modeling
-
-Freud_Code_For_Temporal_Encoding/
-Trial-level PCA analysis and temporal feature extraction
-
-External/
-COMPASS state-space toolbox dependency
-
+<pre><code>Code/
+├── Freud_Code_For_Block_Encoding/
+│   └── Autocorrelation analysis and block-level modeling
+│
+├── Freud_Code_For_Temporal_Encoding/
+│   └── Trial-level PCA analysis and temporal feature extraction
+│
+├── External/
+│   └── COMPASS state-space toolbox dependency
+│
 Figures/
-All publication figures (SVG format)
-
+│   └── Publication figures (SVG format)
+│
 docs/
-Manuscript and supplementary materials
+│   └── Manuscript and supplementary materials
+</code></pre>
 
+<hr/>
 
----
+<!-- Running the Analysis -->
+<h2 id="running-the-analysis">Running the Analysis</h2>
 
-# Running the Analysis
+<h3 id="add-to-path">1. Add repository to the MATLAB path</h3>
+<pre><code class="language-matlab">addpath(genpath('Near-Term-Suicidality-Risk-Encoded-in-the-Temporal-Dynamics-of-the-Death-IAT'))</code></pre>
 
-### 1. Add repository to MATLAB path
+<h3 id="block-level-analysis">2. Block-Level Temporal Analysis</h3>
+<p>Run the block-level autocorrelation analysis:</p>
+<pre><code class="language-matlab">Freud_Main_Block_Analysis</code></pre>
+<p>This script generates the analyses corresponding to <strong>Figure 2</strong>.</p>
 
-addpath(genpath('Near-Term-Suicidality-Risk-Encoded-in-the-Temporal-Dynamics-of-the-Death-IAT'))
-### 2. Block-Level Temporal Analysis
-Freud_Main_Block_Analysis
+<h3 id="trial-level-dynamics">3. Trial-Level Temporal Dynamics</h3>
+<p>Run the PCA-based trial dynamics analysis:</p>
+<pre><code class="language-matlab">Freud_PCA_Trial_Dynamics</code></pre>
+<p>This produces the latent dynamics visualizations corresponding to <strong>Figure 3</strong>.</p>
 
-Generates the autocorrelation analyses corresponding to Figure 2.
-
-### 3. Trial-Level Temporal Dynamics
-Freud_PCA_Trial_Dynamics
-
-Produces latent dynamics visualizations corresponding to Figure 3.
-
-### 4. Classification Experiments
-Freud_Plot_Model_Comparison
-
-Runs classification models and generates ROC comparisons used in Figure 4.
+<h3 id="classification-experiments">4. Classification Experiments</h3>
+<p>Run the classifier benchmarking pipeline:</p>
+<pre><code class="language-matlab">Freud_Plot_Model_Comparison</code></pre>
+<p>This generates ROC comparisons used in <strong>Figure 4</strong>.</p>
 
 ### Requirements
 
@@ -136,19 +137,6 @@ Statistics and Machine Learning Toolbox
 ### Optional:
 
 COMPASS State-Space Toolbox (included in External/)
-
-# Data
-
-The repository includes processed behavioral data required to reproduce the analyses:
-
-
-Freud_Processed_BDIAT.mat
-
-
-Raw cohort data is provided in:
-
-
-Freud_Cohort_N80.xlsx
 
 # Citation
 
