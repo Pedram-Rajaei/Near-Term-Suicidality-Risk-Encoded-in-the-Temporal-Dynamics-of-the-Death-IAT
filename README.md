@@ -33,27 +33,30 @@ Key components of the analysis pipeline include:
 
 # Technical Implementation
 
-### Bilinear Logistic Regression
+## Bilinear Logistic Regression (Joint Latent Model)
 
-Rather than flattening the reaction-time matrix, the model preserves the temporal structure of the BD-IAT task by using a bilinear form.
+For each participant \(i\), reaction times are represented as a matrix \(Z_i \in \mathbb{R}^{m \times p}\) (blocks \(\times\) trial positions). We apply the same preprocessing / feature transform used in the analysis pipeline, denoted \(Z_i^{(-\alpha)T}\).
 
-Let \(X \in \mathbb{R}^{m \times p}\) represent the reaction-time matrix for a participant, where \(m\) indexes task blocks and \(p\) indexes trial positions.
-
-The probability of suicidal ideation is modeled as:
+The joint bilinear logistic model is:
 
 $$
-P(y=1 \mid X) = \sigma \left( w_{time}^T X w_{space} + b \right)
+\log\left(\frac{p_i}{1-p_i}\right)
+=
+b_0
++
+\sum_{j=1}^{J}
+v_j^{T}\, Z_i^{(-\alpha)T}\, b_j
 $$
 
 where:
 
-- \(w_{time}\) captures **temporal weighting across trial positions**
-- \(w_{space}\) captures **structure across task blocks**
-- \(\sigma(\cdot)\) is the logistic sigmoid function
+- \(p_i = P(y_i=1 \mid Z_i)\) is the predicted probability that participant \(i\) is **with active suicidal ideation**
+- \(b_0\) is the intercept
+- \(v_j \in \mathbb{R}^{m}\) are **block-space latent vectors** (how blocks are weighted)
+- \(b_j \in \mathbb{R}^{p}\) are **trial/temporal weight vectors** (how within-block trial positions are weighted)
+- \(J\) is the latent rank (in our main results, a low-dimensional setting such as \(J=2\) is sufficient)
 
-This formulation allows the model to learn **separable temporal and structural patterns** while dramatically reducing the number of parameters compared to a fully flattened classifier.
-
-The resulting representation provides a **low-dimensional latent embedding of behavioral dynamics** used for classification.
+This formulation preserves the matrix structure of reaction-time dynamics and learns **paired latent patterns** \((v_j, b_j)\) that capture how trial-level temporal structure interacts with block-level structure. Compared to flattening \(Z_i\) into a single vector, the model provides a structured, low-dimensional representation that is well-suited to clinical datasets.
 
 ---
 # Example Results
