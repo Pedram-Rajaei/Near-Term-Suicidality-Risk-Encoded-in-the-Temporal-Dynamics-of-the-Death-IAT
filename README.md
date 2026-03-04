@@ -173,12 +173,6 @@ docs/
 
 <hr/>
 
-## Reproducibility
-
-All figures and analyses reported in the paper can be reproduced directly from the code in this repository.
-
-Running the scripts listed below will reproduce the main analyses and figures reported in the manuscript.
-
 <!-- Reproducibility -->
 <h2 id="reproducibility">Reproducibility</h2>
 
