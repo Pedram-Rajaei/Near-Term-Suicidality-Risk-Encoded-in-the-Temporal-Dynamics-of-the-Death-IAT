@@ -178,7 +178,8 @@ docs/
 
 <p>
 All analyses and figures reported in the paper can be reproduced directly from the code in this repository.
-The scripts below generate the main results presented in the manuscript.
+The scripts below generate the main results presented in the manuscript. Detailed descriptions of how each figure is generated can be found in the
+<a href="figures/README.md"><strong>Figures README</strong></a>.
 </p>
 
 <!-- Running the Analysis -->
