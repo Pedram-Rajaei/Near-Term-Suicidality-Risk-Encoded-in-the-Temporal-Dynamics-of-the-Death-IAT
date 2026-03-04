@@ -152,8 +152,9 @@ Optional:
 
 Add the project directory to the MATLAB path:
 
-
+<pre><code class="language-matlab">
 addpath(genpath('Freud_Temporal_Encoding'))
+</code></pre>
 
 ## 2. Execute Primary Analysis
 
