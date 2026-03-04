@@ -47,7 +47,7 @@ This model forms the core predictive component used in the classification analys
 
 ---
 
-# 2. Analysis and Figure Generation
+## 2. Analysis and Figure Generation
 
 ### `Freud_Main_Block_Analysis.m`
 
@@ -90,7 +90,7 @@ This analysis provides insight into **secondary latent behavioral structure**.
 
 ---
 
-# 3. Data Utilities
+## 3. Data Utilities
 
 ### `Freud_PreProcess_Compass.m`
 
@@ -112,7 +112,7 @@ Functions include:
 
 ---
 
-# 4. Data Library
+## 4. Data Library
 
 ### `Freud_Cohort_N80.xlsx`
 
@@ -171,24 +171,24 @@ Freud_Processed_BDIAT.mat
 
 To reproduce the core autocorrelation results:
 
-```matlab
 Freud_Main_Block_Analysis
 
 This generates the analyses corresponding to Figure 2.
 
-3. Generate Classification Results
+### 3. Generate Classification Results
 
 To run classifier comparisons and produce ROC curves:
 
 Freud_Plot_Model_Comparison
-Notes
-Standardization
+
+### Notes
+#### Standardization
 
 Most modeling scripts include a standardize flag.
 
 During cross-validation, standardization uses training-set statistics (mean and standard deviation) to prevent data leakage.
 
-Dependencies
+#### Dependencies
 
 Required MATLAB toolbox:
 
