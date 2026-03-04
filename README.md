@@ -1,5 +1,11 @@
 # Near-Term Suicidality Risk Encoded in the Temporal Dynamics of the Death IAT
 
+[![Paper](https://img.shields.io/badge/Paper-PDF-success)](docs/near_term_suicidality_temporal_dynamics_paper.pdf)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![MATLAB](https://img.shields.io/badge/MATLAB-R2018b%2B-orange)
+[![Figures](https://img.shields.io/badge/Figures-SVG-informational)](figures/)
+[![Source Code](https://img.shields.io/badge/Source-src-lightgrey)](src/)
+
 Computational modeling pipeline for detecting **near-term suicidality risk** from reaction-time dynamics in the **Brief Death Implicit Association Test (BDIAT)**.
 
 The repository implements a full analysis pipeline that extracts **latent temporal structure in reaction-time behavior** using PCA, autocorrelation analysis, and sparse bilinear logistic regression. These temporal features reveal behavioral signatures associated with suicidal ideation and enable predictive classification with **77% balanced accuracy**.
