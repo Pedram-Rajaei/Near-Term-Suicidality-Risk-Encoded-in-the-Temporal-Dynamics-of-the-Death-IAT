@@ -36,7 +36,7 @@ Key components of the analysis pipeline include:
 
 ## Block-Level Temporal Structure
 
-Autocorrelation analysis reveals structured rhythmic patterns in reaction-time dynamics across BD-IAT blocks.
+Autocorrelation analysis reveals structured rhythmic patterns in reaction-time dynamics across BD-IAT blocks. Participants without active suicidal ideation exhibit stronger rhythmic switching patterns across task blocks, suggesting greater sensitivity to the alternating structure of the task.
 
 ![Figure2C](Figures/Figure_2_C.svg)
 
@@ -44,7 +44,7 @@ Autocorrelation analysis reveals structured rhythmic patterns in reaction-time d
 
 ## Latent Temporal Dynamics
 
-Principal component analysis reveals low-dimensional temporal structure within task blocks.
+Principal component analysis reveals low-dimensional temporal structure within blocks of trials. The first principal component captures systematic trial-by-trial adjustment patterns that differentiate participants with and without active suicidal ideation.
 
 ![Figure3C](Figures/Figure_3_C.svg)
 
@@ -52,7 +52,7 @@ Principal component analysis reveals low-dimensional temporal structure within t
 
 ## Model Performance
 
-ROC comparison of multiple classification models using temporal features.
+Receiver operating characteristic (ROC) curves comparing multiple classification models trained on temporal features derived from reaction-time dynamics. The bilinear logistic regression model achieves the highest performance, reaching approximately **77% balanced accuracy**.
 
 ![Figure4A](Figures/Figure_4_A.svg)
 
@@ -60,7 +60,7 @@ ROC comparison of multiple classification models using temporal features.
 
 ## Latent Behavioral Embedding
 
-Participants projected into the learned latent space with the classifier decision boundary.
+Participants projected into the learned latent feature space derived from the bilinear model. The decision boundary separates individuals with and without active suicidal ideation, illustrating how temporal dynamics encode clinically relevant behavioral signatures.
 
 ![Figure4B](Figures/Figure_4_B.svg)
 
@@ -73,6 +73,7 @@ We compared the proposed **Bilinear Logistic Regression model** against several 
 - Logistic Regression (L1 / L2)
 - Linear SVM
 - Multilayer Perceptron (MLP)
+- Long Short-Term Memory (LSTM) Network
 - 1D Convolutional Neural Network
 - Transformer classifier
 - LLM-embedding based classifier
