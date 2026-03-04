@@ -73,7 +73,7 @@ Evaluates how varying the linearization parameter `α` impacts latent feature st
 
 ---
 
-# Preprocessing and Utility Scripts
+## Preprocessing and Utility Scripts
 
 ### `Freud_PreProcess_Compass_Full.m`
 
@@ -101,7 +101,7 @@ Utility for imputing missing or censored reaction-time values using **truncated 
 
 ---
 
-# Data Files
+## Data Files
 
 ### `Freud_Processed_BDIAT.mat`
 
@@ -130,7 +130,7 @@ Pre-computed data structures used for generating **publication-ready figure pane
 
 ---
 
-# Requirements and Setup
+## Requirements and Setup
 
 ## Environment
 
@@ -146,7 +146,7 @@ Optional:
 
 ---
 
-# Running the Analysis
+## Running the Analysis
 
 ## 1. Initialize the Workspace
 
