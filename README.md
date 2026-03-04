@@ -8,7 +8,7 @@ The repository implements a full analysis pipeline that extracts **latent tempor
 
 # Overview
 
-Traditional analyses of the Implicit Association Test (IAT) rely on aggregate metrics such as the **D-score** ([Fig. 2A](Figures/Figure_2_A.svg), [Fig. 2B](Figures/Figure_2_B.svg)), which summarize reaction times across blocks.
+Traditional analyses of the Implicit Association Test (IAT) rely on aggregate metrics such as the **D-score** ([Fig. 2A](figures/Figure_2_A.svg), [Fig. 2B](figures/Figure_2_B.svg)), which summarize reaction times across blocks.
 In contrast, this project investigates the **temporal dynamics of reaction-time behavior**, capturing how responses evolve across trials and blocks. By modeling these temporal patterns, we uncover latent behavioral structure that differentiates individuals **with active suicidal ideation from those without**.
 
 Key components of the analysis pipeline include:
@@ -38,7 +38,7 @@ Key components of the analysis pipeline include:
 Autocorrelation analysis reveals structured rhythmic patterns in reaction-time dynamics across BD-IAT blocks. Participants without active suicidal ideation exhibit stronger rhythmic switching patterns across task blocks, suggesting greater sensitivity to the alternating structure of the task.
 
 <p align="center">
-<img src="Figures/Figure_2_C.svg" width="650">
+<img src="figures/Figure_2_C.svg" width="650">
 </p>
 
 ## Latent Temporal Dynamics
@@ -46,7 +46,7 @@ Autocorrelation analysis reveals structured rhythmic patterns in reaction-time d
 Principal component analysis reveals low-dimensional temporal structure within blocks of trials. The first principal component captures systematic trial-by-trial adjustment patterns that differentiate participants with and without active suicidal ideation.
 
 <p align="center">
-<img src="Figures/Figure_3_C.svg" width="650">
+<img src="figures/Figure_3_C.svg" width="650">
 </p>
 
 
@@ -55,7 +55,7 @@ Principal component analysis reveals low-dimensional temporal structure within b
 Receiver operating characteristic (ROC) curves comparing multiple classification models trained on temporal features derived from reaction-time dynamics. The bilinear logistic regression model achieves the highest performance, reaching approximately **77% balanced accuracy**.
 
 <p align="center">
-<img src="Figures/Figure_4_A.svg" width="650">
+<img src="figures/Figure_4_A.svg" width="650">
 </p>
 
 ## Latent Behavioral Embedding
@@ -63,7 +63,7 @@ Receiver operating characteristic (ROC) curves comparing multiple classification
 Participants projected into the learned latent feature space derived from the bilinear model. The decision boundary separates individuals with and without active suicidal ideation, illustrating how temporal dynamics encode clinically relevant behavioral signatures.
 
 <p align="center">
-<img src="Figures/Figure_4_B.svg" width="650">
+<img src="figures/Figure_4_B.svg" width="650">
 </p>
 
 ## Model Benchmarking (Supplementary Figure S2)
@@ -81,7 +81,7 @@ We compared the proposed **Bilinear Logistic Regression model** against several 
 The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, demonstrating the advantage of explicitly modeling the temporal structure of reaction-time dynamics.
 
 <p align="center">
-<img src="Figures/Figure_S2.svg" width="650">
+<img src="figures/Figure_S2.svg" width="650">
 </p>
 
 
