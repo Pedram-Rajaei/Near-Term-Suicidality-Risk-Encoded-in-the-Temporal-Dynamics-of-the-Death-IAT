@@ -2,7 +2,7 @@
 
 [![Paper](https://img.shields.io/badge/Paper-PDF-success)](docs/near_term_suicidality_temporal_dynamics_paper.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![MATLAB](https://img.shields.io/badge/MATLAB-R2018b%2B-orange)
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2018b%2B-orange)](https://www.mathworks.com/products/matlab.html)
 [![Figures](https://img.shields.io/badge/Figures-SVG-informational)](figures/)
 [![Source Code](https://img.shields.io/badge/Source-src-lightgrey)](src/)
 
