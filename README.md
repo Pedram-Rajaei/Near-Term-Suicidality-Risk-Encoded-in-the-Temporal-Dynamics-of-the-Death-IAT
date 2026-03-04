@@ -39,10 +39,22 @@ For each participant \(i\), reaction times are represented as a matrix \(Z_i \in
 
 The joint bilinear logistic model is:
 
-<p align="center">
-log(p<sub>i</sub>/(1-p<sub>i</sub>)) =
-b<sub>0</sub> + Σ<sub>j=1</sub><sup>J</sup>
-v<sub>j</sub><sup>T</sup> Z<sub>i</sub><sup>(-α)T</sup> b<sub>j</sub>
+<p align="center" style="font-size:20px">
+
+log&nbsp;(
+<span style="display:inline-block; text-align:center;">
+<span style="border-bottom:1px solid; display:block;">p<sub>i</sub></span>
+<span style="display:block;">1 − p<sub>i</sub></span>
+</span>
+)
+&nbsp;=&nbsp;
+b<sub>0</sub>
+&nbsp;+&nbsp;
+∑<sub>j=1</sub><sup>J</sup>
+v<sub>j</sub><sup>T</sup>
+Z<sub>i</sub><sup>(−α)T</sup>
+b<sub>j</sub>
+
 </p>
 
 <p><strong>where:</strong></p>
