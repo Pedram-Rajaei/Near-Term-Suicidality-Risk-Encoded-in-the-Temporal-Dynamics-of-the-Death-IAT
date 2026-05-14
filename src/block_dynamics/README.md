@@ -1,197 +1,487 @@
-# Freud: Latent Dynamics of Implicit Association
+# Freud Project: Block-Level Latent Temporal Dynamics Analysis
 
-This directory contains the MATLAB implementation for analyzing **trial-by-trial latent dynamics** in the **Brief Death Implicit Association Test (BD-IAT)**.
+## Overview
 
-The pipeline spans the full analysis workflow, from **reaction-time preprocessing** to **autocorrelation analysis**, **latent modeling**, and **classifier evaluation**, corresponding to the analyses presented in the PNAS manuscript.
+This repository contains the MATLAB implementation used for the block-level temporal dynamics analyses in the Freud BDIAT study.
+
+The project investigates whether structured temporal organization in behavioral reaction-time (RT) sequences contains clinically meaningful information associated with suicide ideation (SI) group labels. Using trial-by-trial behavioral data from the **Brief Death Implicit Association Test (BDIAT)**, the analysis pipeline characterizes latent rhythmic structure, temporal autocorrelation organization, and low-dimensional latent behavioral dynamics across task blocks.
+
+The block-level framework integrates:
+
+- reaction-time preprocessing,
+- temporal autocorrelation analysis,
+- latent dynamical feature extraction,
+- permutation and robustness testing,
+- cross-validated classifier modeling,
+- spectral analysis,
+- and latent low-dimensional embedding analysis.
+
+The primary objective is to determine whether temporal behavioral structure beyond mean RT contains reproducible and clinically relevant latent dynamics.
 
 ---
 
 # Repository Structure
 
-## 1. Core Engines
+# Main Figure Generation Scripts
 
-### `Freud_Autocorr_Engine.m`
+### `Freud_Plot_DScore_ROC.m`
 
-Primary function for computing **trial-level and block-level Autocorrelation Functions (ACF)**.
+Generates the primary Figure 2 classification summary panels:
 
-Features include:
+- `Figure_2_A.svg`
+- `Figure_2_B.svg`
 
-- Per-subject detrending
-- Optional log-transformations
-- Flexible lag selection
+These panels summarize:
 
----
+- D-score group separation,
+- ROC-based classification performance,
+- and behavioral classification statistics.
 
-### `Freud_Autocorr_Advanced.m`
+Required input:
 
-Extension of the ACF engine providing **statistical validation of rhythmic structure**.
-
-Additional capabilities:
-
-- Permutation testing
-- Null distribution generation
-- “Shuffle-destroy” modes for rhythm stability testing
+- `Freud_Processed_BDIAT.mat`
 
 ---
-
-### `Freud_Model_CrossVal_Joint.m`
-
-Implementation of the **Joint LOOCV classifier model**.
-
-The algorithm alternates between two optimization steps:
-
-- **b-step:** L1-regularized logistic regression (`lassoglm`)
-- **v-step:** gradient descent optimization of latent weights
-
-This model forms the core predictive component used in the classification analysis.
-
----
-
-## 2. Analysis and Figure Generation
 
 ### `Freud_Main_Block_Analysis.m`
 
-Main wrapper script used to reproduce **Figure 2 block-level analyses**.
+Main wrapper script used to generate the primary block-level temporal dynamics analyses presented in **Figure 2**.
 
-Responsibilities include:
+The script performs:
 
-- Running autocorrelation analyses
-- Performing rhythm stability tests
-- Passing results to figure export functions
+- block-level autocorrelation analysis,
+- temporal rhythm characterization,
+- latent temporal structure estimation,
+- and publication-ready figure export.
+
+Outputs:
+
+- `Figure_2_D.svg`
+- `Figure_2_E.svg`
+
+This script no longer generates supplementary Figure S6 panels.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
-### `Freud_Plot_Latent_Dynamics.m`
+### `Freud_Robustness_Check.m`
 
-Generates **Figure 4 panels** showing:
+Performs robustness and perturbation analyses used for:
 
-- learned block-space vectors (`v`)
-- learned temporal weights (`b`)
-- latent space embeddings across cross-validation folds
+- `Figure_2_F.svg`
+- `Figure_2_G.svg`
+
+The script evaluates the stability of the learned temporal structure under perturbation and control analyses.
+
+This script no longer contains any Figure 7A generation code.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
 ### `Freud_Plot_Model_Comparison.m`
 
-Generates **ROC comparisons** between:
+Generates the classifier performance comparison panel:
 
-- Joint Learned models
-- Fixed-PC baseline models
+- `Figure_4_B.svg`
 
-Used for the classification performance evaluation.
+The figure compares:
+
+- latent temporal models,
+- fixed-feature baseline models,
+- and ROC-based predictive performance.
+
+Exports SVG only.
+
+Required input:
+
+- model evaluation outputs from classifier analyses
+
+---
+
+### `Freud_Plot_Latent_Dynamics.m`
+
+Generates the primary latent-dynamics visualization panels:
+
+- `Figure_4_C.svg`
+- `Figure_4_E.svg`
+- `Figure_4_F.svg`
+
+The script visualizes:
+
+- latent temporal embeddings,
+- learned latent vectors,
+- temporal trajectory organization,
+- and low-dimensional behavioral manifolds.
+
+Required input:
+
+- latent model outputs from cross-validation analyses
+
+---
+
+### `Freud_Plot_Permutation_Null.m`
+
+Generates the null-distribution and permutation-control analyses used for Figure 4D.
+
+Outputs:
+
+- `Figure_4_D_1.svg`
+- `Figure_4_D_2.svg`
+- `Figure_4_D_3.svg`
+
+These analyses evaluate whether the learned latent temporal structure exceeds permutation-based null expectations.
+
+---
+
+# Core Modeling and Analysis Scripts
+
+### `Freud_Autocorr_Engine.m`
+
+Core function for computing behavioral autocorrelation structure across trials and blocks.
+
+Capabilities include:
+
+- per-subject detrending,
+- lag-dependent autocorrelation estimation,
+- optional logarithmic transformations,
+- and flexible temporal-window selection.
+
+This function forms the core computational backend for the block-dynamics analyses.
+
+---
+
+### `Freud_Autocorr_Advanced.m`
+
+Extended autocorrelation analysis framework providing statistical validation of temporal rhythmic structure.
+
+Capabilities include:
+
+- permutation testing,
+- null-distribution estimation,
+- and temporal rhythm stability analyses.
+
+---
+
+### `Freud_Autocorr_Advanced_2.m`
+
+Secondary advanced autocorrelation analysis module used for additional validation and exploratory rhythmic analyses.
+
+Used for:
+
+- extended rhythm diagnostics,
+- alternative null procedures,
+- and supplementary validation analyses.
+
+---
+
+### `Freud_Audit_Task_Switch.m`
+
+Analyzes behavioral adjustment dynamics surrounding task-switch transitions between BDIAT blocks.
+
+Implements:
+
+- post-switch temporal analysis,
+- linear mixed-effects modeling,
+- and switch-specific temporal adaptation statistics.
+
+---
+
+### `Freud_Main_Classifier.m`
+
+Primary classifier training and evaluation pipeline for block-level temporal features.
+
+Used for:
+
+- latent temporal feature evaluation,
+- model fitting,
+- and classifier diagnostics.
+
+---
+
+### `Freud_Model_CrossVal_Joint.m`
+
+Implements the joint latent temporal cross-validation framework.
+
+The optimization alternates between:
+
+- sparse logistic-regression parameter estimation,
+- and latent temporal weight optimization.
+
+This model forms the primary learned latent classifier used in the manuscript.
+
+---
+
+### `Freud_Model_CrossVal_Fixed.m`
+
+Implements the fixed-feature baseline cross-validation model used for comparison against the learned latent temporal model.
+
+Used as the principal baseline classifier framework.
 
 ---
 
 ### `Freud_SVD_Secondary_PC.m`
 
-Explores the **second principal component dynamics** within the *Death + Me* blocks.
+Analyzes secondary latent temporal structure through higher-order singular vector decomposition.
 
-This analysis provides insight into **secondary latent behavioral structure**.
+Used to evaluate:
+
+- secondary latent dynamics,
+- additional temporal organization,
+- and low-dimensional behavioral structure beyond the dominant latent component.
+
+This script produces diagnostic plots only and does not export publication figure files.
 
 ---
 
-## 3. Data Utilities
+### `Freud_Spectral_Density_Test.m`
+
+Performs spectral and frequency-domain analyses of behavioral temporal structure.
+
+Used to evaluate:
+
+- rhythmic organization,
+- oscillatory temporal structure,
+- and frequency-domain separation between groups.
+
+---
+
+### `Freud_Diagnostic_AC.m`
+
+Diagnostic visualization and validation utilities for autocorrelation analyses.
+
+Used for:
+
+- autocorrelation sanity checks,
+- temporal debugging,
+- and exploratory diagnostics.
+
+---
+
+# Preprocessing and Utility Scripts
 
 ### `Freud_PreProcess_Compass.m`
 
-Prepares behavioral data for integration with the **COMPASS State-Space Toolbox**.
+Runs the preprocessing pipeline used to generate processed BDIAT behavioral trajectories.
 
-Used to estimate **hidden behavioral trajectories** from reaction-time sequences.
+Includes:
+
+- RT preprocessing,
+- behavioral filtering,
+- COMPASS-compatible formatting,
+- and latent trajectory preparation.
+
+Required input:
+
+- `Freud_Cohort_N80.xlsx`
+
+Expected output:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
 ### `Freud_Clean_TimeSeries.m`
 
-Utility for reaction-time preprocessing.
+Utility function for preprocessing behavioral RT sequences.
 
-Functions include:
+Implements:
 
-- Missing-value imputation
-- Outlier rejection
-- time-series cleaning prior to modeling
+- missing-value imputation,
+- threshold-censor handling,
+- interpolation-based reconstruction,
+- and cleaned trajectory generation.
+
+Used internally throughout preprocessing and analysis workflows.
 
 ---
 
-## 4. Data Library
+### `Freud_Export_Results.m`
+
+Exports processed cohort results and reorganizes behavioral datasets into MATLAB-ready structures.
+
+Used to convert raw spreadsheet data into internal analysis formats.
+
+---
+
+# Data Files
 
 ### `Freud_Cohort_N80.xlsx`
 
-Primary behavioral dataset containing:
+Primary behavioral cohort dataset.
 
-- participant reaction times
-- clinical group labels  
-  (with active SI vs. without active SI)
+Contains:
 
----
-
-### `Freud_Trial_Map.xlsx`
-
-Mapping of stimuli to **trial positions within each block**.
-
-Used for verifying that stimulus ordering does not bias temporal dynamics.
+- participant RT trajectories,
+- SI group labels,
+- and behavioral metadata.
 
 ---
 
 ### `Freud_Processed_BDIAT.mat`
 
-Core processed dataset containing:
+Primary processed BDIAT dataset used throughout the block-level analyses.
 
-- `XF` — filtered reaction-time matrices
-- group labels and metadata
+Expected variables include:
 
-This file is the **main dependency for all modeling scripts**.
+- `XF` — processed behavioral RT matrix
+- `active_score` — SI group labels
 
----
-
-### `Freud_Model_J2_Latents.mat`
-
-Pre-computed latent model parameters for the **J = 2 configuration** used in Figure 4.
+This file is the principal dependency for all main analyses and figure-generation scripts.
 
 ---
 
-### `Freud_ROC_Comparison_Data.mat`
+# Requirements and Setup
 
-Stored model performance metrics used to generate **ROC comparison plots**.
+## Software Requirements
+
+Required:
+
+- MATLAB R2018b or newer
+- Statistics and Machine Learning Toolbox
+
+Required for classifier optimization:
+
+- `lassoglm`
+- linear mixed-effects modeling functions
+
+Optional:
+
+- COMPASS State-Space Toolbox
 
 ---
 
-# Quick Start
+# Running the Analysis
 
-### 1. Ensure Data Is Available
+## 1. Initialize MATLAB Path
 
-Place the processed dataset in your MATLAB path:
-
-
-Freud_Processed_BDIAT.mat
-
+```matlab
+addpath(genpath('Freud_Block_Dynamics'))
+```
 
 ---
 
-### 2. Run Block-Level Analysis
+## 2. Generate Figure 2 Panels
 
-To reproduce the core autocorrelation results:
+### Generate Figure 2A and 2B
 
+```matlab
+Freud_Plot_DScore_ROC
+```
+
+---
+
+### Generate Figure 2D and 2E
+
+```matlab
 Freud_Main_Block_Analysis
+```
 
-This generates the analyses corresponding to Figure 2.
+Expected outputs:
 
-### 3. Generate Classification Results
+```text
+Figure_2_D.svg
+Figure_2_E.svg
+```
 
-To run classifier comparisons and produce ROC curves:
+---
 
+### Generate Figure 2F and 2G
+
+```matlab
+Freud_Robustness_Check
+```
+
+Expected outputs:
+
+```text
+Figure_2_F.svg
+Figure_2_G.svg
+```
+
+---
+
+## 3. Generate Figure 4 Panels
+
+### Generate Figure 4B
+
+```matlab
 Freud_Plot_Model_Comparison
+```
 
-### Notes
-#### Standardization
+---
 
-Most modeling scripts include a standardize flag.
+### Generate Figure 4C, 4E, and 4F
 
-During cross-validation, standardization uses training-set statistics (mean and standard deviation) to prevent data leakage.
+```matlab
+Freud_Plot_Latent_Dynamics
+```
 
-#### Dependencies
+---
 
-Required MATLAB toolbox:
+### Generate Figure 4D Permutation Panels
 
-Statistics and Machine Learning Toolbox
+```matlab
+Freud_Plot_Permutation_Null
+```
 
-This toolbox is required for the lassoglm implementation used in the Joint model.
+Expected outputs:
+
+```text
+Figure_4_D_1.svg
+Figure_4_D_2.svg
+Figure_4_D_3.svg
+```
+
+---
+
+## 4. Run Core Modeling Pipelines
+
+```matlab
+Freud_Main_Classifier
+Freud_Model_CrossVal_Joint
+Freud_Model_CrossVal_Fixed
+```
+
+---
+
+## 5. Run Diagnostic and Exploratory Analyses
+
+```matlab
+Freud_Autocorr_Advanced
+Freud_Autocorr_Advanced_2
+Freud_Audit_Task_Switch
+Freud_SVD_Secondary_PC
+Freud_Spectral_Density_Test
+Freud_Diagnostic_AC
+```
+
+---
+
+## 6. Regenerate Processed Dataset from Raw Cohort Data
+
+```matlab
+Freud_PreProcess_Compass
+```
+
+Required input:
+
+```text
+Freud_Cohort_N80.xlsx
+```
+
+Expected output:
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+---
+- `Freud_Plot_Model_Comparison.m` exports only Figure 4B.
+- `Freud_SVD_Secondary_PC.m` produces diagnostic plots only and does not export manuscript figure files.
+- Permutation-control analyses for Figure 4D are generated independently through `Freud_Plot_Permutation_Null.m`.
