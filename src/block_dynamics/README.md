@@ -313,26 +313,119 @@ Used to convert raw spreadsheet data into internal analysis formats.
 
 ### `Freud_Cohort_N80.xlsx`
 
-Primary behavioral cohort dataset.
+Primary raw behavioral cohort dataset.
 
 Contains:
 
-- participant RT trajectories,
+- participant-level reaction-time trajectories,
 - SI group labels,
-- and behavioral metadata.
+- and behavioral metadata used throughout the analysis pipeline.
+
+Expected columns include:
+
+- `ID`
+- `RT_1` through `RT_360`
+- `activeSI`
+- `SI_label`
+
+This file is required for:
+
+- representative RT trajectory generation,
+- and preprocessing from raw behavioral data.
+
+---
+
+### `Freud_Trial_Map.xlsx`
+
+Trial-order and stimulus-mapping reference file.
+
+Used to verify:
+
+- block structure,
+- trial ordering,
+- and stimulus-position consistency across BD-IAT conditions.
 
 ---
 
 ### `Freud_Processed_BDIAT.mat`
 
-Primary processed BDIAT dataset used throughout the block-level analyses.
+Primary processed BD-IAT dataset used throughout all block-level analyses.
 
 Expected variables include:
 
 - `XF` — processed behavioral RT matrix
 - `active_score` — SI group labels
 
-This file is the principal dependency for all main analyses and figure-generation scripts.
+This file is the principal dependency for:
+
+- latent temporal analyses,
+- autocorrelation modeling,
+- classifier evaluation,
+- and manuscript figure generation.
+
+---
+
+### `Freud_Main_Block_Analysis_Results.mat`
+
+Cached outputs from the primary block-level temporal analysis pipeline.
+
+Used to accelerate regeneration of:
+
+- Figure 2D
+- Figure 2E
+
+without rerunning the full autocorrelation analysis workflow.
+
+---
+
+### `Freud_Model_J2_Latents.mat`
+
+Stored latent model outputs for the `J = 2` latent configuration used in Figure 4 analyses.
+
+Contains:
+
+- learned latent embeddings,
+- temporal latent vectors,
+- and cross-validation latent representations.
+
+Used primarily for:
+
+- Figure 4C
+- Figure 4E
+- Figure 4F
+
+---
+
+### `Freud_ROC_Comparison_Data.mat`
+
+Stored classifier evaluation and ROC-analysis outputs.
+
+Used to generate:
+
+- Figure 4B
+
+without rerunning the full classifier training pipeline.
+
+---
+
+### `perm_null_results.mat`
+
+Stored permutation and null-distribution analysis outputs.
+
+Used for regeneration of the Figure 4D permutation-control analyses.
+
+---
+
+### `Freud_Audit_Task_Switch_Results.mat`
+
+Stored outputs from the task-switch temporal adaptation analyses.
+
+Contains:
+
+- post-switch behavioral adjustment statistics,
+- and linear mixed-effects analysis outputs.
+
+Used for supplementary and robustness analyses.
 
 ---
 
