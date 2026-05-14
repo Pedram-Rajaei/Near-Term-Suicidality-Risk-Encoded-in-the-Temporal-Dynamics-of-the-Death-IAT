@@ -160,7 +160,7 @@ Required input:
 
 ### `Freud_PreProcess_Compass_Full.m`
 
-Runs the full preprocessing pipeline used to generate the processed BD-IAT dataset.
+Runs the full preprocessing pipeline used to generate the processed BDIAT dataset.
 
 The pipeline includes:
 
@@ -226,7 +226,7 @@ This file is required for:
 
 ### `Freud_Processed_BDIAT.mat`
 
-Primary processed BD-IAT dataset used throughout the trial-level analyses.
+Primary processed BDIAT dataset used throughout the trial-level analyses.
 
 Expected variables include:
 
