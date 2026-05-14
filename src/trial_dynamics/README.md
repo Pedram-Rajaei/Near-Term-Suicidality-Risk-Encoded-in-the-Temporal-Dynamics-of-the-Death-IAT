@@ -1,168 +1,353 @@
-# Freud Project: Temporal Encoding & Latent Structure Workspace
+# Freud Project: Trial-Level Temporal Dynamics Analysis
 
 ## Overview
 
-This workspace contains the MATLAB implementation for analyzing high-dimensional behavioral reaction-time (RT) data through the lens of **temporal encoding**.
+This repository contains the MATLAB implementation used for the trial-level temporal dynamics analyses presented in the Freud BDIAT study.
 
-The project analyzes reaction-time dynamics from the **Brief Death Implicit Association Test (BD-IAT)** to identify latent behavioral structure related to clinical outcomes.
+The project investigates whether fine-scale temporal structure in reaction-time (RT) behavior contains clinically relevant information beyond conventional summary statistics. Using behavioral time series from the **Brief Death Implicit Association Test (BDIAT)**, the analysis pipeline extracts latent temporal structure associated with suicide ideation (SI) group labels.
 
-The analysis pipeline extracts low-dimensional temporal features from RT time series using:
+The trial-level framework combines:
 
-- Principal Component Analysis (PCA)
-- Singular Value Decomposition (SVD)
-- State-Space modeling via the **COMPASS framework**
+- reaction-time trajectory analysis,
+- trial-position temporal dynamics,
+- Principal Component Analysis (PCA),
+- Singular Value Decomposition (SVD),
+- bootstrap uncertainty estimation,
+- linear mixed-effects (LME) modeling,
+- and classifier-oriented temporal feature extraction.
 
-The core objective is to determine how **latent temporal structure in reaction-time dynamics relates to behavioral classification and clinical risk signals**.
+The primary objective is to characterize how structured within-block behavioral dynamics relate to latent cognitive processing differences across clinical groups.
 
 ---
 
 # Repository Structure
 
-## Core Analysis Scripts
+## Main Figure Generation Scripts
+
+### `Freud_Plot_Representative_RT_Traces.m`
+
+Generates the representative trial-level reaction-time trajectories used in **Figure 2C**.
+
+The script:
+
+- loads raw behavioral RT data,
+- interpolates missing or invalid RT samples,
+- converts RT values to log(RT),
+- computes smoothed temporal trajectories,
+- and exports publication-ready SVG panels.
+
+Outputs:
+
+- `Figure_2_C_1.svg`
+- `Figure_2_C_2.svg`
+
+Current representative participants:
+
+- `Figure_2_C_1.svg` → participant ID `367`
+- `Figure_2_C_2.svg` → participant ID `341`
+
+Required input:
+
+- `Freud_Cohort_N80.xlsx`
+
+---
 
 ### `Freud_PCA_Trial_Dynamics.m`
 
-Performs **per-subject, per-trial-position PCA** across task blocks.
+Generates the primary trial-level latent temporal dynamics panels used in **Figure 3**.
 
-Generates the primary intra-block dynamics plots:
+The script performs:
 
-- Mean ScaleRT profiles
-- PC1 eigenvector entries
+- per-subject trial-position decomposition,
+- block-aligned temporal averaging,
+- bootstrap confidence interval estimation,
+- and PCA/SVD-derived latent feature extraction.
+
+Analyses are performed separately for:
+
+- Death + Me trials
+- Life + Me trials
+
+Outputs:
+
+- `Figure_3_A.svg` — Death + Me RT-scale temporal dynamics
+- `Figure_3_B.svg` — Life + Me RT-scale temporal dynamics
+- `Figure_3_C.svg` — Death + Me latent PC1 dynamics
+- `Figure_3_D.svg` — Life + Me latent PC1 dynamics
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
+
+# Statistical and Diagnostic Analysis Scripts
 
 ### `Freud_PCA_Clinical_LME.m`
 
+Performs clinical statistical modeling using PCA/SVD-derived temporal features.
+
 Implements:
 
-- Singular Value Decomposition (SVD)
-- Linear Mixed-Effects (LME) modeling
+- linear mixed-effects (LME) modeling,
+- Group × Trial interaction analysis,
+- within-block behavioral adjustment analysis,
+- and latent temporal trajectory evaluation.
 
-Used to test **Group × Trial interactions** and evaluate early behavioral adjustment within blocks.
+This script is used for inferential statistical analysis rather than figure generation.
 
----
+Required input:
 
-### `Freud_Stats_Dynamic_Variance.m`
-
-Computes the **variance explained by principal components**, validating the low-dimensional representation of the behavioral data.
-
----
-
-### `Freud_Spectral_Stats.m`
-
-Performs **frequency-domain analysis** using multi-taper Power Spectral Density (PSD).
-
-Used to identify **rhythmic structure in reaction-time dynamics**.
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
 ### `Freud_Run_Joint_Classifier.m`
 
-Runs the classification experiments using:
+Runs classifier-oriented analyses using latent temporal behavioral features extracted from trial-level RT structure.
 
-- PCA-derived temporal features
-- Sparse latent modeling
+Used for:
+
+- feature evaluation,
+- classifier diagnostics,
+- and exploratory predictive modeling.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
-### `Freud_Hyperparam_Sweep.m`
+### `Freud_Param_Sensitivity_Sweep.m`
 
-Performs **robustness and sensitivity analysis**.
+Performs robustness and sensitivity analysis for the latent temporal transformation parameter.
 
-Evaluates how varying the linearization parameter `α` impacts latent feature stability.
+This script evaluates how changes in the exponential scaling parameter affect:
+
+- group separation,
+- latent trajectory structure,
+- and feature stability.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
-## Preprocessing and Utility Scripts
+### `Freud_Stats_Avg_Variance.m`
+
+Computes variance-related summary statistics used to characterize temporal variability in processed RT trajectories.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
+
+---
+
+### `Freud_Spectral_Stats.m`
+
+Performs spectral and frequency-domain analyses of behavioral RT dynamics.
+
+Used to evaluate rhythmic and oscillatory structure in the temporal behavioral signal.
+
+Required input:
+
+- `Freud_Processed_BDIAT.mat`
+
+---
+
+# Preprocessing and Utility Scripts
 
 ### `Freud_PreProcess_Compass_Full.m`
 
-Integrates BD-IAT data with the **COMPASS State-Space Toolbox**.
+Runs the full preprocessing pipeline used to generate the processed BD-IAT dataset.
 
-Estimates hidden behavioral trajectories using:
+The pipeline includes:
 
-- Filtered states
-- Smoothed states
+- RT preprocessing,
+- censoring handling,
+- COMPASS-based state-space filtering,
+- and latent behavioral trajectory estimation.
+
+Required input:
+
+- `Freud_Cohort_N80.xlsx`
+
+Output:
+
+- `Freud_Processed_BDIAT.mat`
 
 ---
 
-### `Freud_PreProcess_Refined.m`
+### `Freud_PreProcess_Alternative.m`
 
-Alternative preprocessing pipeline used for:
+Alternative preprocessing workflow used for:
 
-- ablation studies
-- quality control checks
+- quality-control analysis,
+- preprocessing validation,
+- and ablation-style comparisons.
+
+This script is not required for reproducing the main-text figures.
 
 ---
 
 ### `Freud_Impute_RT_Series.m`
 
-Utility for imputing missing or censored reaction-time values using **truncated normal expectations**.
+Utility function for imputing missing or threshold-censored RT trajectories.
+
+Imputation procedure includes:
+
+- interpolation-based recovery of random missing values,
+- and truncated-normal expectation estimation for censored RT samples.
+
+Used internally by preprocessing workflows.
 
 ---
 
-## Data Files
-
-### `Freud_Processed_BDIAT.mat`
-
-Primary preprocessed dataset containing:
-
-- `XF` — filtered reaction-time series  
-- `XS` — smoothed reaction-time series  
-- `active_score` — clinical group labels  
-
-This file is the **primary dependency for all PCA and classification scripts**.
-
----
+# Data Files
 
 ### `Freud_Cohort_N80.xlsx`
 
-Raw behavioral dataset.
+Raw behavioral cohort dataset.
 
-Only required if you intend to **rerun preprocessing pipelines from scratch**.
+Expected columns include:
+
+- `ID`
+- `RT_1` through `RT_360`
+- `activeSI`
+- `SI_label`
+
+This file is required for:
+
+- representative RT trajectory generation,
+- and preprocessing from raw data.
 
 ---
 
-### `Freud_Fig2_Source_Panels.mat`
-### `Freud_Fig4_Source_Panels.mat`
+### `Freud_Processed_BDIAT.mat`
 
-Pre-computed data structures used for generating **publication-ready figure panels**.
+Primary processed BD-IAT dataset used throughout the trial-level analyses.
+
+Expected variables include:
+
+- `XF` — processed trial-level reaction-time matrix
+- `active_score` — binary SI group label (`0 = SI−`, `1 = SI+`)
+
+This file is the primary dependency for:
+
+- PCA/SVD analyses,
+- statistical modeling,
+- and latent temporal dynamics figure generation.
 
 ---
 
-## Requirements and Setup
+# Requirements and Setup
 
-## Environment
+## Software Requirements
 
-Required software:
+Required:
 
-- MATLAB **R2018b or newer**
+- MATLAB R2018b or newer
 - Statistics and Machine Learning Toolbox
 
 Optional:
 
-- **COMPASS State-Space Toolbox**  
-  (included in the `External/` folder)
+- COMPASS State-Space Toolbox  
+  (only required if rerunning preprocessing from raw data)
 
 ---
 
-## Running the Analysis
+# Running the Analysis
 
-## 1. Initialize the Workspace
+## 1. Initialize MATLAB Path
 
-Add the project directory to the MATLAB path:
-
-<pre><code class="language-matlab">
+```matlab
 addpath(genpath('Freud_Temporal_Encoding'))
-</code></pre>
+```
 
-## 2. Execute Primary Analysis
+---
 
-Generate the main latent dynamics figures:
+## 2. Generate Representative RT Trajectories (Figure 2C)
 
+```matlab
+Freud_Plot_Representative_RT_Traces
+```
+
+Expected outputs:
+
+```text
+Figure_2_C_1.svg
+Figure_2_C_2.svg
+```
+
+Required input:
+
+```text
+Freud_Cohort_N80.xlsx
+```
+
+---
+
+## 3. Generate Trial-Level Temporal Dynamics Panels (Figure 3)
+
+```matlab
 Freud_PCA_Trial_Dynamics
-## 3. Regenerate State-Space Filtered Data (Optional)
+```
 
-If you wish to rerun the state-space preprocessing:
+Expected outputs:
 
+```text
+Figure_3_A.svg
+Figure_3_B.svg
+Figure_3_C.svg
+Figure_3_D.svg
+```
+
+Required input:
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+---
+
+## 4. Run Clinical Statistical Analysis
+
+```matlab
+Freud_PCA_Clinical_LME
+```
+
+This script performs the mixed-effects statistical analyses used for trial-level interpretation.
+
+---
+
+## 5. Run Optional Diagnostic and Exploratory Analyses
+
+```matlab
+Freud_Run_Joint_Classifier
+Freud_Param_Sensitivity_Sweep
+Freud_Stats_Avg_Variance
+Freud_Spectral_Stats
+```
+
+These scripts are supplementary to the primary figure-generation pipeline.
+
+---
+
+## 6. Regenerate Processed Dataset from Raw Cohort Data
+
+```matlab
 Freud_PreProcess_Compass_Full
+```
+
+Required input:
+
+```text
+Freud_Cohort_N80.xlsx
+```
+
+Expected output:
+
+```text
+Freud_Processed_BDIAT.mat
+```
