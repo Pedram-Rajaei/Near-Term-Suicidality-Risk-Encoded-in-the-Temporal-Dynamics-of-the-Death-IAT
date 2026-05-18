@@ -1,54 +1,65 @@
 # Near-Term Suicidality Risk Encoded in the Temporal Dynamics of the Death IAT
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-success)](docs/near_term_suicidality_temporal_dynamics_paper.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2018b%2B-orange)](https://www.mathworks.com/help/matlab/index.html)
 [![Figures](https://img.shields.io/badge/Figures-SVG-informational)](figures/)
 [![Source Code](https://img.shields.io/badge/Source-src-lightgrey)](src/)
 
-Computational modeling pipeline for detecting **near-term suicidality risk** from reaction-time dynamics in the **Brief Death Implicit Association Test (BDIAT)**.
+Computational modeling framework for detecting near-term suicidality risk from temporal reaction-time dynamics in the Brief Death Implicit Association Test (BDIAT).
 
-The repository implements a full analysis pipeline that extracts **latent temporal structure in reaction-time behavior** using PCA, autocorrelation analysis, and sparse bilinear logistic regression. These temporal features reveal behavioral signatures associated with suicidal ideation and enable predictive classification with **77% balanced accuracy**.
+This repository contains the complete MATLAB implementation used for:
+
+- reaction-time preprocessing,
+- temporal dynamics analysis,
+- latent feature extraction,
+- autocorrelation and rhythm analysis,
+- and sparse bilinear latent classification.
+
+The project demonstrates that latent temporal structure in reaction-time behavior contains clinically informative signatures associated with suicidal ideation.
 
 ---
 
 # Overview
 
-Traditional analyses of the Implicit Association Test (IAT) rely on aggregate metrics such as the **D-score** ([Fig. 2A](figures/Figure_2_A.svg), [Fig. 2B](figures/Figure_2_B.svg)), which summarize reaction times across blocks.
-In contrast, this project investigates the **temporal dynamics of reaction-time behavior**, capturing how responses evolve across trials and blocks. By modeling these temporal patterns, we uncover latent behavioral structure that differentiates individuals **with active suicidal ideation from those without**.
+Traditional analyses of the Implicit Association Test (IAT) rely primarily on aggregate behavioral statistics such as the D-score. In contrast, this project models the full temporal organization of reaction-time behavior across trials and blocks.
 
-Key components of the analysis pipeline include:
+The analysis framework combines:
 
-- Reaction-time preprocessing and filtering
-- Block-level autocorrelation analysis
-- Trial-level latent structure extraction using PCA
-- Spectral analysis of rhythmic response patterns
-- Sparse bilinear logistic regression for classification
+- block-level autocorrelation analysis,
+- trial-level temporal dynamics,
+- PCA/SVD latent decomposition,
+- spectral and rhythmic analysis,
+- permutation-based null testing,
+- and sparse bilinear logistic regression.
+
+The resulting latent temporal representations provide low-dimensional behavioral embeddings capable of distinguishing individuals with and without active suicidal ideation.
 
 ---
 
 # Key Results
 
-- Reaction-time series exhibit **structured temporal dynamics** across task blocks  
-- Autocorrelation analysis reveals **rhythmic switching patterns** in behavioral responses  
-- PCA identifies **low-dimensional latent dynamics** governing trial-by-trial adaptation  
-- Behavioral time-series can be compressed into **low-dimensional latent embeddings (J = 2)** for robust clinical prediction  
-- A sparse bilinear logistic model predicts suicidal ideation status with **77% balanced accuracy**
+- Reaction-time behavior exhibits structured temporal organization across BDIAT blocks.
+- Autocorrelation analysis reveals rhythmic switching structure in behavioral responses.
+- Trial-level dynamics show systematic within-block temporal adaptation patterns.
+- Low-dimensional latent temporal embeddings capture clinically relevant behavioral structure.
+- Sparse bilinear latent classifiers achieve robust predictive performance using only behavioral temporal features.
 
 ---
 
-# Technical Implementation
+# Bilinear Logistic Regression Framework
 
-## Bilinear Logistic Regression (Joint Latent Model)
+For each participant, reaction times are represented as a matrix:
 
-<p>
-  For each participant <span>i</span>, reaction times are represented as a matrix
-  <span>Z<sub>i</sub> ∈ ℝ<sup>m × p</sup></span>
-  (blocks × trial positions). We apply the same preprocessing / feature transform used in the analysis pipeline,
-  denoted <span>Z<sub>i</sub><sup>(−α)T</sup></span>.
+<p align="center">
+Z<sub>i</sub> ∈ ℝ<sup>m × p</sup>
 </p>
 
-The joint bilinear logistic model is:
+where:
+
+- `m` = number of task blocks
+- `p` = number of within-block trial positions
+
+After temporal preprocessing and nonlinear transformation, the bilinear latent model is:
 
 <p align="center" style="font-size:20px;">
 log(p<sub>i</sub> / (1 − p<sub>i</sub>)) =
@@ -59,205 +70,243 @@ Z<sub>i</sub><sup>(−α)T</sup>
 b<sub>j</sub>
 </p>
 
-<p><strong>where:</strong></p>
+where:
 
-<ul>
-  <li>
-    <span>
-      p<sub>i</sub> = P(y<sub>i</sub> = 1 | Z<sub>i</sub>)
-    </span>
-    is the predicted probability that participant <span>i</span> is <strong>with active suicidal ideation</strong>
-  </li>
+- `pᵢ` is the predicted probability of active suicidal ideation
+- `vⱼ` are block-space latent vectors
+- `bⱼ` are trial-position temporal vectors
+- `J` is the latent rank
 
-  <li>
-    <span>b<sub>0</sub></span> is the intercept
-  </li>
+This formulation preserves the matrix structure of behavioral temporal dynamics and learns paired latent representations that jointly model:
 
-  <li>
-    <span>v<sub>j</sub> ∈ ℝ<sup>m</sup></span> are <strong>block-space latent vectors</strong> (how blocks are weighted)
-  </li>
-
-  <li>
-    <span>b<sub>j</sub> ∈ ℝ<sup>p</sup></span> are <strong>trial/temporal weight vectors</strong> (how within-block trial positions are weighted)
-  </li>
-
-  <li>
-    <span>J</span> is the latent rank (in our main results, a low-dimensional setting such as <span>J = 2</span> is sufficient)
-  </li>
-</ul>
-
-<p>
-  This formulation preserves the matrix structure of reaction-time dynamics and learns
-  <strong>paired latent patterns</strong> (v<sub>j</sub>, b<sub>j</sub>) that capture how trial-level temporal structure
-  interacts with block-level structure. Compared to flattening Z<sub>i</sub> into a single vector, the model
-  provides a structured, low-dimensional representation that is well-suited to clinical datasets.
-</p>
+- block-level structure,
+- and trial-level temporal adaptation.
 
 ---
-# Example Results
 
-## Block-Level Temporal Structure
+# Repository Structure
 
-Autocorrelation analysis reveals structured rhythmic patterns in reaction-time dynamics across BD-IAT blocks. Participants without active suicidal ideation exhibit stronger rhythmic switching patterns across task blocks, suggesting greater sensitivity to the alternating structure of the task.
-
-<p align="center">
-<img src="figures/Figure_2_C.svg" width="650">
-</p>
-
-## Latent Temporal Dynamics
-
-Principal component analysis reveals low-dimensional temporal structure within blocks of trials. The first principal component captures systematic trial-by-trial adjustment patterns that differentiate participants with and without active suicidal ideation.
-
-<p align="center">
-<img src="figures/Figure_3_C.svg" width="650">
-</p>
-
-
-## Model Performance
-
-Receiver operating characteristic (ROC) curves comparing multiple classification models trained on temporal features derived from reaction-time dynamics. The bilinear logistic regression model achieves the highest performance, reaching approximately **77% balanced accuracy**.
-
-<p align="center">
-<img src="figures/Figure_4_A.svg" width="650">
-</p>
-
-## Latent Behavioral Embedding
-
-Participants projected into the learned latent feature space derived from the bilinear model. The decision boundary separates individuals with and without active suicidal ideation, illustrating how temporal dynamics encode clinically relevant behavioral signatures.
-
-<p align="center">
-<img src="figures/Figure_4_B.svg" width="650">
-</p>
-
-## Model Benchmarking (Supplementary Figure S2)
-
-We compared the proposed **Bilinear Logistic Regression model** against several machine learning baselines:
-
-- Logistic Regression (L1 / L2)
-- Linear SVM
-- Multilayer Perceptron (MLP)
-- Long Short-Term Memory (LSTM) Network
-- 1D Convolutional Neural Network
-- Transformer classifier
-- LLM-embedding based classifier
-
-The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, demonstrating the advantage of explicitly modeling the temporal structure of reaction-time dynamics.
-
-<p align="center">
-<img src="figures/Figure_S2.svg" width="650">
-</p>
-
-
-<!-- Repository Structure -->
-<h2 id="repository-structure">Repository Structure</h2>
-
-<pre><code>src/
+```text
+src/
+│
 ├── block_dynamics/
-│   └── Autocorrelation analysis and block-level modeling
+│   ├── Block-level temporal dynamics
+│   ├── Autocorrelation analysis
+│   ├── Bilinear classifier models
+│   └── Latent embedding analysis
 │
 ├── trial_dynamics/
-│   └── Trial-level PCA analysis and temporal feature extraction
+│   ├── Trial-level PCA/SVD analyses
+│   ├── Temporal adaptation analysis
+│   └── Supplementary temporal statistics
 │
 ├── external/
 │   └── COMPASS state-space toolbox dependency
 │
-├── supplementary/
-│   └── Supplementary Informantaions Analysis 
-│
+└── supplementary/
+│   └── Supplementary analyses and control experiments
+
 figures/
-│   └── Publication figures (SVG format)
-│
+│   ├── Main-text SVG figures
+│   ├── Supplementary SVG figures
+│   └── Figure reproduction guide
+
+data/
+│   ├── Processed behavioral datasets
+│   ├── Cached latent model outputs
+│   └── Permutation/null analysis outputs
+
 docs/
-│   └── Manuscript and supplementary materials
-</code></pre>
+│   ├── Manuscript
+│   └── Supplementary materials
+```
 
-<hr/>
+---
 
-<!-- Reproducibility -->
-<h2 id="reproducibility">Reproducibility</h2>
+# Main Figure Generation
 
-<p>
-All analyses and figures reported in the paper can be reproduced directly from the code in this repository.
-The scripts below generate the main results presented in the manuscript. Detailed descriptions of how each figure is generated can be found in the
-<a href="figures/README.md"><strong>Figures README</strong></a>.
-</p>
+A detailed figure-generation guide is available in:
 
-<!-- Running the Analysis -->
-<h2 id="running-the-analysis">Running the Analysis</h2>
+```text
+figures/README.md
+```
 
-<h3 id="add-to-path">1. Add repository to the MATLAB path</h3>
+The figure guide documents:
 
-<pre><code class="language-matlab">
+- all figure-generation scripts,
+- required inputs,
+- exported outputs,
+- and supplementary figure workflows.
+
+---
+
+# Quick Start
+
+## 1. Add Repository to MATLAB Path
+
+```matlab
 addpath(genpath('Near-Term-Suicidality-Risk-Encoded-in-the-Temporal-Dynamics-of-the-Death-IAT'))
-</code></pre>
+```
 
-<h3 id="block-level-analysis">2. Block-Level Temporal Analysis</h3>
+---
 
-<p>Run the block-level autocorrelation analysis:</p>
+## 2. Generate Main Figure Panels
 
-<pre><code class="language-matlab">
+### Figure 2 — Behavioral and Block-Level Temporal Structure
+
+```matlab
+Freud_Plot_DScore_ROC
+Freud_Plot_Representative_RT_Traces
 Freud_Main_Block_Analysis
-</code></pre>
+Freud_Robustness_Check
+```
 
-<p>This script reproduces the block-level temporal structure analyses shown in:</p>
+Expected outputs include:
 
-<ul>
-<li><strong><a href="figures/Figure_2_C.svg">Figure 2C</a></strong> — Block autocorrelation dynamics</li>
-<li><strong><a href="figures/Figure_2_D.svg">Figure 2D</a></strong> — Rhythmic switching structure</li>
-</ul>
+```text
+Figure_2_A.svg
+Figure_2_B.svg
+Figure_2_C_1.svg
+Figure_2_C_2.svg
+Figure_2_D.svg
+Figure_2_E.svg
+Figure_2_F.svg
+Figure_2_G.svg
+```
 
-<h3 id="trial-level-dynamics">3. Trial-Level Temporal Dynamics</h3>
+---
 
-<p>Run the PCA-based temporal dynamics analysis:</p>
+### Figure 3 — Trial-Level Temporal Dynamics
 
-<pre><code class="language-matlab">
+```matlab
 Freud_PCA_Trial_Dynamics
-</code></pre>
+```
 
-<p>This script reproduces:</p>
+Expected outputs:
 
-<ul>
-<li><strong><a href="figures/Figure_3_C.svg">Figure 3C</a></strong> — Principal component dynamics across trials</li>
-</ul>
+```text
+Figure_3_A.svg
+Figure_3_B.svg
+Figure_3_C.svg
+Figure_3_D.svg
+```
 
-<h3 id="classification-experiments">4. Classification Experiments</h3>
+---
 
-<p>Run the classifier benchmarking pipeline:</p>
+### Figure 4 — Latent Model and Classifier Analyses
 
-<pre><code class="language-matlab">
+```matlab
 Freud_Plot_Model_Comparison
-</code></pre>
+Freud_Plot_Latent_Dynamics
+Freud_Plot_Permutation_Null
+```
 
-<p>This script reproduces the classification results shown in:</p>
+Expected outputs:
 
-<ul>
-<li><strong><a href="figures/Figure_4_A.svg">Figure 4A</a></strong> — ROC comparison across models</li>
-<li><strong><a href="figures/Figure_4_B.svg">Figure 4B</a></strong> — Latent behavioral embedding</li>
-<li><strong><a href="figures/Figure_S2.svg">Figure S2</a></strong> — Model benchmarking</li>
-</ul>
+```text
+Figure_4_B.svg
+Figure_4_C.svg
+Figure_4_D_1.svg
+Figure_4_D_2.svg
+Figure_4_D_3.svg
+Figure_4_E.svg
+Figure_4_F.svg
+```
 
-### Requirements
+---
 
-Required software:
+# Supplementary Figure Generation
 
-MATLAB (R2018b or newer)
+## Figure S3 — Diagnostic-Group Control Analysis
 
-Statistics and Machine Learning Toolbox
+```matlab
+Freud_PCA_Trial_Dynamics_S3
+Freud_Plot_Model_Comparison_S3
+```
 
-### Optional:
+---
 
-COMPASS State-Space Toolbox (included in External/)
+## Figure S4 — PC Loading Statistical Tests
+
+```matlab
+Freud_PCA_Loading_Tests_S4
+```
+
+---
+
+## Figure S5 — Trial-Wise Temporal Significance Tests
+
+```matlab
+Freud_Trial_Dynamics_TTest_S5
+```
+
+---
+
+## Figure S6 — Rhythm-Index Robustness Analysis
+
+```matlab
+Freud_RhythmIndex_S6_Robustness
+```
+
+---
+
+# Required Data
+
+## Core datasets
+
+```text
+Freud_Processed_BDIAT.mat
+Freud_Cohort_N80.xlsx
+Freud_Trial_Map.xlsx
+```
+
+## Cached model outputs
+
+```text
+Freud_Model_J2_Latents.mat
+Freud_ROC_Comparison_Data.mat
+perm_null_results.mat
+```
+
+---
+
+# Software Requirements
+
+Required:
+
+- MATLAB R2018b or newer
+- Statistics and Machine Learning Toolbox
+
+Optional:
+
+- COMPASS State-Space Toolbox  
+  (included in `external/`)
+
+---
+
+# Notes
+
+- All manuscript figures are exported as publication-ready SVG files.
+- Panel letters are intentionally omitted from exported SVGs to simplify manuscript layout assembly.
+- Cached `.mat` outputs are included to support reproducibility without rerunning all model-fitting procedures.
+- Cross-validation and classifier scripts may require substantially longer runtime than figure-only export scripts.
+- Figure numbering and script names correspond to the cleaned GitHub release version.
+
+---
 
 # Citation
 
-If you use this code or analysis pipeline in your research, please cite:
+If you use this repository or analysis pipeline in your research, please cite:
 
+```text
 Rajaii, P. et al.
 Near-Term Suicidality Risk Encoded in the Temporal Dynamics of the Death IAT.
-PNAS (under review).
+```
+
+---
 
 # Contact
 
-Pedram Rajaii
+**Pedram Rajaii**  
+Department of Biomedical Engineering  
 University of Houston
-Department of Biomedical Engineering
