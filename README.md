@@ -144,7 +144,7 @@ We compared the proposed **Bilinear Logistic Regression model** against several 
 The bilinear model achieves the best performance, reaching **AUC ≈ 0.80**, demonstrating the advantage of explicitly modeling the temporal structure of reaction-time dynamics.
 
 <p align="center">
-<img src="figures/Figure_S2.svg" width="650">
+<img src="figures/Figure_S4.svg" width="650">
 </p>
 
 
@@ -233,7 +233,6 @@ Freud_Plot_Model_Comparison
 <ul>
 <li><strong><a href="figures/Figure_4_B.svg">Figure 4B</a></strong> — ROC comparison across models</li>
 <li><strong><a href="figures/Figure_4_C.svg">Figure 4C</a></strong> — Latent behavioral embedding</li>
-<li><strong><a href="figures/Figure_S2.svg">Figure S2</a></strong> — Model benchmarking</li>
 </ul>
 
 ### Requirements
