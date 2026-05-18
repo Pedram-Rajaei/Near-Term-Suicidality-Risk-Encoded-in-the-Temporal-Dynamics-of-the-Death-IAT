@@ -208,17 +208,6 @@ Figure_3_C.svg
 Figure_3_D.svg
 ```
 
-**Panel mapping**
-
-| Panel | Output | Description |
-|---|---|---|
-| Figure 3A | `Figure_3_A.svg` | Death + Me RT-scale dynamics |
-| Figure 3B | `Figure_3_B.svg` | Life + Me RT-scale dynamics |
-| Figure 3C | `Figure_3_C.svg` | Death + Me PC1 dynamics |
-| Figure 3D | `Figure_3_D.svg` | Life + Me PC1 dynamics |
-
----
-
 # Figure 4 — Latent Model and Classifier Analyses
 
 Figure 4 summarizes the latent classifier, learned low-dimensional embedding, permutation controls, and learned model parameters.
@@ -281,16 +270,6 @@ Figure_4_E.svg
 Figure_4_F.svg
 ```
 
-**Panel mapping**
-
-| Panel | Output | Description |
-|---|---|---|
-| Figure 4C | `Figure_4_C.svg` | Learned latent embedding |
-| Figure 4E | `Figure_4_E.svg` | Learned trial-position weights |
-| Figure 4F | `Figure_4_F.svg` | Learned block-space projection vectors |
-
----
-
 ## Figure 4D
 
 **Purpose**
@@ -317,193 +296,9 @@ Figure_4_D_2.svg
 Figure_4_D_3.svg
 ```
 
-**Panel mapping**
-
-| Output | Description |
-|---|---|
-| `Figure_4_D_1.svg` | AUC null distribution |
-| `Figure_4_D_2.svg` | Balanced-accuracy null distribution |
-| `Figure_4_D_3.svg` | Sensitivity-specificity null density |
-
----
-
 # Supplementary Figures
 
-# Figure S1 — Baseline Model Comparison
-
-**Purpose**
-
-Compares the latent temporal classifier against standard machine-learning baselines under leave-one-out cross-validation.
-
-**Notebook**
-
-```text
-Freud_S1&2.ipynb
-```
-
----
-
-# Figure S2 — Stimulus Distribution Validation
-
-**Purpose**
-
-Validates that stimulus ordering and trial-position structure do not confound the temporal dynamics results.
-
-**Notebook**
-
-```text
-Freud_S1&2.ipynb
-```
-
-**Input**
-
-```text
-Freud_Trial_Map.xlsx
-```
-
-**Outputs**
-
-Figure S2 includes stimulus-position heatmaps and Monte Carlo validation analyses.
-
----
-
-# Figure S3 — Diagnostic-Group Control Analysis
-
-Figure S3 evaluates whether the trial-level and classifier results are primarily explained by MDD/control diagnostic grouping rather than the SI grouping used in the main analysis.
-
----
-
-## Figure S3A and Figure S3B
-
-**Script**
-
-```matlab
-Freud_PCA_Trial_Dynamics_S3
-```
-
-**Input**
-
-```text
-Freud_Processed_BDIAT.mat
-```
-
-**Outputs**
-
-```text
-Figure_S3_A.svg
-Figure_S3_B.svg
-```
-
-**Panel mapping**
-
-| Panel | Output | Description |
-|---|---|---|
-| Figure S3A | `Figure_S3_A.svg` | Death + Me RT-scale trajectories under diagnostic grouping |
-| Figure S3B | `Figure_S3_B.svg` | FDR-adjusted q-values for Death + Me rowMean tests |
-
----
-
-## Figure S3C
-
-**Purpose**
-
-ROC analysis when the bilinear classifier is evaluated under the Figure S3 grouping convention.
-
-**Script**
-
-```matlab
-Freud_Plot_Model_Comparison_S3
-```
-
-**Input**
-
-```text
-Freud_Processed_BDIAT.mat
-```
-
-**Outputs**
-
-```text
-Figure_S3_C.svg
-Freud_Model_J2_Latents_S3.mat
-Freud_ROC_Comparison_Data_S3.mat
-```
-
----
-
-# Figure S4 — PC1 and PC2 Loading-Entry Tests
-
-**Purpose**
-
-Trial-wise statistical tests of PC1 and PC2 loading entries within the Death + Me condition.
-
-**Script**
-
-```matlab
-Freud_PCA_Trial_Dynamics_S4
-```
-
-**Input**
-
-```text
-Freud_Processed_BDIAT.mat
-```
-
-**Outputs**
-
-```text
-Figure_S4_A.svg
-Figure_S4_B.svg
-```
-
-**Panel mapping**
-
-| Panel | Output | Description |
-|---|---|---|
-| Figure S4A | `Figure_S4_A.svg` | FDR-adjusted q-values for PC1 loading entries |
-| Figure S4B | `Figure_S4_B.svg` | FDR-adjusted q-values for PC2 loading entries |
-
----
-
-# Figure S5 — Trial-Wise Significance of Temporal Dynamics
-
-**Purpose**
-
-Provides the inferential statistical support for trial-level temporal dynamics in Figure 3.
-
-**Script**
-
-```matlab
-Freud_PCA_Trial_Dynamicst_S5
-```
-
-**Input**
-
-```text
-Freud_Processed_BDIAT.mat
-```
-
-**Outputs**
-
-```text
-Figure_S5_A.svg
-Figure_S5_B.svg
-Figure_S5_C.svg
-Figure_S5_D.svg
-```
-
-**Panel mapping**
-
-| Panel | Output | Description |
-|---|---|---|
-| Figure S5A | `Figure_S5_A.svg` | Death + Me rowMean q-values |
-| Figure S5B | `Figure_S5_B.svg` | Life + Me rowMean q-values |
-| Figure S5C | `Figure_S5_C.svg` | Death + Me rowEV/PC1 q-values |
-| Figure S5D | `Figure_S5_D.svg` | Life + Me rowEV/PC1 q-values |
-
----
-
-# Figure S6 — Rhythm-Index Robustness Analysis
+# Figure S1 — Rhythm-Index Robustness Analysis
 
 **Purpose**
 
@@ -525,23 +320,156 @@ Freud_Processed_BDIAT_Short.mat
 **Outputs**
 
 ```text
+Figure_S1_A.svg
+Figure_S1_B.svg
+Figure_S1_C.svg
+Figure_S1_D.svg
+rhythm_s1_results.mat
+```
+---
+
+# Figure S2 — PC1 and PC2 Loading-Entry Tests
+
+**Purpose**
+
+Trial-wise statistical tests of PC1 and PC2 loading entries within the Death + Me condition.
+
+**Script**
+
+```matlab
+Freud_PCA_Loading_Tests_S4
+```
+
+**Input**
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+**Outputs**
+
+```text
+Figure_S2_A.svg
+Figure_S2_B.svg
+```
+---
+# Figure S3 — Stimulus Distribution Validation
+
+**Purpose**
+
+Validates that stimulus ordering and trial-position structure do not confound the temporal dynamics results.
+
+**Notebook**
+
+```text
+Freud_S3&4.ipynb
+```
+
+**Input**
+
+```text
+Freud_Trial_Map.xlsx
+```
+
+**Outputs**
+
+Figure S3 includes stimulus-position heatmaps and Monte Carlo validation analyses.
+
+---
+# Figure S4 — Baseline Model Comparison
+
+**Purpose**
+
+Compares the latent temporal classifier against standard machine-learning baselines under leave-one-out cross-validation.
+
+**Notebook**
+
+```text
+Freud_S3&4.ipynb
+```
+---
+
+# Figure S5 — Diagnostic-Group Control Analysis
+
+Figure S5 evaluates whether the trial-level and classifier results are primarily explained by MDD/control diagnostic grouping rather than the SI grouping used in the main analysis.
+
+---
+
+## Figure S5A and Figure S5B
+
+**Script**
+
+```matlab
+Freud_PCA_Trial_Dynamics_S5
+```
+
+**Input**
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+**Outputs**
+
+```text
+Figure_S5_A.svg
+Figure_S5_B.svg
+```
+
+---
+
+## Figure S5C 
+
+**Purpose**
+
+ROC analysis when the bilinear classifier is evaluated under the Figure S5 grouping convention.
+
+**Script**
+
+```matlab
+Freud_Plot_Model_Comparison_S5
+```
+
+**Input**
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+**Outputs**
+
+```text
+Figure_S3_C.svg
+Freud_Model_J2_Latents_S3.mat
+Freud_ROC_Comparison_Data_S3.mat
+```
+
+---
+
+# Figure S6 — Trial-Wise Significance of Temporal Dynamics
+
+**Purpose**
+
+Provides the inferential statistical support for trial-level temporal dynamics in Figure 3.
+
+**Script**
+
+```matlab
+Freud_PCA_Trial_Dynamics_S6
+```
+
+**Input**
+
+```text
+Freud_Processed_BDIAT.mat
+```
+
+**Outputs**
+
+```text
 Figure_S6_A.svg
 Figure_S6_B.svg
 Figure_S6_C.svg
 Figure_S6_D.svg
-rhythm_s6_results.mat
 ```
-
-**Panel mapping**
-
-| Panel | Output | Dataset | Shuffle control |
-|---|---|---|---|
-| Figure S6A | `Figure_S6_A.svg` | Main BD-IAT dataset | Destroy-ABAB |
-| Figure S6B | `Figure_S6_B.svg` | Main BD-IAT dataset | Preserve-ABAB |
-| Figure S6C | `Figure_S6_C.svg` | Short/online dataset | Destroy-ABAB |
-| Figure S6D | `Figure_S6_D.svg` | Short/online dataset | Preserve-ABAB |
-
 ---
-- Cached `.mat` outputs are included to support reproducibility without requiring all model fitting steps to be rerun.
-- Classifier-based scripts may take substantially longer than simple figure-export scripts because they perform cross-validation.
-- The script names listed here correspond to the cleaned GitHub release version.
