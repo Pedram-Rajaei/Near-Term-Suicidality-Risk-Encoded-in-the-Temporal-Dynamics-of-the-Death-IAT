@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="100%">
+  <defs>
+    <pattern id="diagonal-lines" patternUnits="userSpaceOnUse" width="8" height="8">
+      <path d="M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="black" stroke-width="1.5" />
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="white" />
+
+  <text x="-145" y="35" transform="rotate(-90)" text-anchor="middle" font-family="sans-serif" font-size="18" fill="black">Number of Participants</text>
+
+  <line x1="80" y1="40" x2="80" y2="250" stroke="black" stroke-width="1.5" />
+  
+  <line x1="73" y1="250" x2="80" y2="250" stroke="black" stroke-width="1.5" />
+  <text x="65" y="255" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">0</text>
+  
+  <line x1="73" y1="215" x2="80" y2="215" stroke="black" stroke-width="1.5" />
+  <text x="65" y="220" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">10</text>
+  
+  <line x1="73" y1="180" x2="80" y2="180" stroke="black" stroke-width="1.5" />
+  <text x="65" y="185" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">20</text>
+  
+  <line x1="73" y1="145" x2="80" y2="145" stroke="black" stroke-width="1.5" />
+  <text x="65" y="150" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">30</text>
+  
+  <line x1="73" y1="110" x2="80" y2="110" stroke="black" stroke-width="1.5" />
+  <text x="65" y="115" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">40</text>
+  
+  <line x1="73" y1="75" x2="80" y2="75" stroke="black" stroke-width="1.5" />
+  <text x="65" y="80" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">50</text>
+  
+  <line x1="73" y1="40" x2="80" y2="40" stroke="black" stroke-width="1.5" />
+  <text x="65" y="45" text-anchor="end" font-family="sans-serif" font-size="16" fill="black">60</text>
+
+  <line x1="80" y1="250" x2="520" y2="250" stroke="black" stroke-width="1.5" />
+
+  <text x="185" y="275" text-anchor="middle" font-family="sans-serif" font-size="16" fill="black">SI−</text>
+  <text x="395" y="275" text-anchor="middle" font-family="sans-serif" font-size="16" fill="black">SI+</text>
+
+  <rect x="125" y="131" width="120" height="119" fill="#3580B8" stroke="black" stroke-width="1" />
+  <text x="185" y="198" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white">34</text>
+
+  <rect x="125" y="50.5" width="120" height="80.5" fill="#3580B8" stroke="black" stroke-width="1" />
+  <rect x="125" y="50.5" width="120" height="80.5" fill="url(#diagonal-lines)" />
+  <text x="185" y="98" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white">23</text>
+
+  <rect x="335" y="176.5" width="120" height="73.5" fill="#E34A33" stroke="black" stroke-width="1" />
+  <text x="395" y="221" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white">21</text>
+
+  <rect x="335" y="169.5" width="120" height="7" fill="#E34A33" stroke="black" stroke-width="1" />
+  <rect x="335" y="169.5" width="120" height="7" fill="url(#diagonal-lines)" />
+  
+  <line x1="475" y1="173" x2="460" y2="173" stroke="black" stroke-width="2" />
+  <polygon points="460,173 468,168 468,178" fill="black" />
+  <text x="485" y="180" font-family="sans-serif" font-size="20" fill="black">2</text>
+
+  <rect x="440" y="40" width="24" height="16" fill="black" stroke="black" stroke-width="1" />
+  <text x="475" y="53" font-family="sans-serif" font-size="14" fill="black">MDD</text>
+
+  <rect x="440" y="65" width="24" height="16" fill="white" stroke="black" stroke-width="1" />
+  <rect x="440" y="65" width="24" height="16" fill="url(#diagonal-lines)" />
+  <text x="475" y="78" font-family="sans-serif" font-size="14" fill="black">Control</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 350">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#999999" />
+    </marker>
+  </defs>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#000000" text-anchor="middle">
+    <text x="120" y="65">Block-1</text>
+    <rect x="50" y="80" width="140" height="50" fill="#B0B0B0" />
+    <text x="120" y="113" font-size="22">Death+Me</text>
+
+    <text x="260" y="65">Block-2</text>
+    <rect x="190" y="80" width="140" height="50" fill="#FFC000" />
+    <text x="260" y="113" font-size="22">Life+Me</text>
+
+    <text x="400" y="65">Block-3</text>
+    <rect x="330" y="80" width="140" height="50" fill="#B0B0B0" />
+    <text x="400" y="113" font-size="22">Death+Me</text>
+
+    <text x="540" y="65">Block-4</text>
+    <rect x="470" y="80" width="140" height="50" fill="#FFC000" />
+    <text x="540" y="113" font-size="22">Life+Me</text>
+
+    <circle cx="630" cy="105" r="2.5" fill="#B0B0B0" />
+    <circle cx="650" cy="105" r="2.5" fill="#B0B0B0" />
+    <circle cx="670" cy="105" r="2.5" fill="#B0B0B0" />
+    <circle cx="690" cy="105" r="2.5" fill="#B0B0B0" />
+    <circle cx="710" cy="105" r="2.5" fill="#B0B0B0" />
+    <circle cx="730" cy="105" r="2.5" fill="#B0B0B0" />
+
+    <text x="840" y="65">Block-17</text>
+    <rect x="770" y="80" width="140" height="50" fill="#B0B0B0" />
+    <text x="840" y="113" font-size="22">Death+Me</text>
+
+    <text x="980" y="65">Block-18</text>
+    <rect x="910" y="80" width="140" height="50" fill="#FFC000" />
+    <text x="980" y="113" font-size="22">Life+Me</text>
+  </g>
+
+  <g stroke="#999999" stroke-width="2" fill="none">
+    <path d="M 260 130 L 260 190 L 275 190" marker-end="url(#arrow)" />
+
+    <path stroke-width="1.5" d="M290 145 v90 M296.3 145 v90 M302.6 145 v90 M308.9 145 v90 M315.2 145 v90 M321.5 145 v90 M327.8 145 v90 M334.1 145 v90 M340.4 145 v90 M346.7 145 v90 M353 145 v90 M359.3 145 v90 M365.6 145 v90 M371.9 145 v90 M378.2 145 v90 M384.5 145 v90 M390.8 145 v90 M397.1 145 v90 M403.4 145 v90 M410 145 v90" />
+
+    <path d="M 280 270 L 265 270" marker-end="url(#arrow)" />
+    <path d="M 420 270 L 435 270" marker-end="url(#arrow)" />
+  </g>
+
+  <text x="350" y="276" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle" fill="#000000">20-Trials</text>
+
+  <g stroke="#000000" stroke-width="2">
+    <line x1="190" y1="80" x2="190" y2="130" />
+    <line x1="330" y1="80" x2="330" y2="130" />
+    <line x1="470" y1="80" x2="470" y2="130" />
+    <line x1="610" y1="80" x2="610" y2="130" />
+    <line x1="770" y1="80" x2="770" y2="130" />
+    <line x1="910" y1="80" x2="910" y2="130" />
+  </g>
+</svg>
